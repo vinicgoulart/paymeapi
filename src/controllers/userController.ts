@@ -32,7 +32,6 @@ const UpdateUsername = async (req: Request, res: Response) => {
     }catch(error: any){
         res.status(400).json({ status: 'Failed', message: error.message });
     }
-    
 };
 
 const Index = async (req: Request, res: Response) => {
