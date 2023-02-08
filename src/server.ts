@@ -17,11 +17,15 @@ declare module 'express-session'{
         username: string | null
     }
 }
+
+var oneHour = 60 * 60 * 1000;
+
 app.use(session({
     secret: process.env.URI,
     resave: false,
     saveUninitialized: false,
-    cookie: { secure: false, httpOnly: true }
+    cookie: { secure: false, httpOnly: true, maxAge: oneHour },
+    name: 'sessionId'
 }));
 
 app.use('/', authRouter);
