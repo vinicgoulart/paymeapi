@@ -4,7 +4,8 @@ import mongoose from "mongoose";
 import session from "express-session";
 
 import { authRouter } from "./routes/authRoute";
-import { userRoute } from "./routes/userRoute";
+import { userRouter } from "./routes/userRoute";
+import { paymentsRouter } from "./routes/paymentsRoute";
 
 dotenv.config();
 
@@ -12,7 +13,7 @@ const app: Express = express();
 app.use(express.json());
 declare module 'express-session'{
     interface SessionData {
-        _id: { [key: string]: any } | null;
+        _id: String | null;
         username: string | null
     }
 }
@@ -24,7 +25,8 @@ app.use(session({
 }));
 
 app.use('/', authRouter);
-app.use('/user', userRoute);
+app.use('/user', userRouter);
+app.use('/payments', paymentsRouter);
 
 mongoose.set('strictQuery', true);
 mongoose.connect(process.env.URI, () => {

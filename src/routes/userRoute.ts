@@ -10,4 +10,4 @@ router.delete('/destroy/:username', verifyAuth, Destroy);
 
 router.put('/nickname', verifyAuth, UpdateUsername);
 
-export const userRoute = router;
+export const userRouter = router;
