@@ -44,7 +44,8 @@ const Update = async (req: Request, res: Response) => {
     const userData = {
         title: req.body.title,
         description: req.body.decription,
-        value: req.body.value
+        value: req.body.value,
+        datePayment: req.body.datePayment
     };
 
     try{
