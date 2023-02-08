@@ -28,7 +28,6 @@ const UpdateUsername = async (req: Request, res: Response) => {
 
     try{
         var updateUser = await userSchema.findByIdAndUpdate(query, userData);
-
         res.status(200).json({ status: 'Success', message: 'Username changed!' });
     }catch(error: any){
         res.status(400).json({ status: 'Failed', message: error.message });

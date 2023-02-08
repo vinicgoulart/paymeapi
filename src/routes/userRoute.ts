@@ -1,12 +1,13 @@
 import express from 'express';
 import { Destroy, UpdateUsername, Index } from '../controllers/userController';
+import { verifyAuth } from '../middlewares/verifyauthMiddleware';
 
 const router = express.Router();
 
-router.get('/', Index);
+router.get('/', verifyAuth, Index);
 
-router.delete('/destroy/:username', Destroy);
+router.delete('/destroy/:username', verifyAuth, Destroy);
 
-router.put('/nickname', UpdateUsername);
+router.put('/nickname', verifyAuth, UpdateUsername);
 
 export const userRoute = router;
