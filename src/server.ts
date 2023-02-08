@@ -13,7 +13,7 @@ const app: Express = express();
 app.use(express.json());
 declare module 'express-session'{
     interface SessionData {
-        _id: String | null;
+        _id: String | Object | null;
         username: string | null
     }
 }
