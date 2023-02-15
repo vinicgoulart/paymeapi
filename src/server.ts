@@ -2,6 +2,7 @@ import dotenv from "dotenv";
 import express, { Express } from "express";
 import mongoose from "mongoose";
 import session from "express-session";
+import cors from 'cors';
 
 import { authRouter } from "./routes/authRoute";
 import { userRouter } from "./routes/userRoute";
@@ -10,7 +11,13 @@ import { paymentsRouter } from "./routes/paymentsRoute";
 dotenv.config();
 
 const app: Express = express();
+
+var options: cors.CorsOptions = {
+    origin: 'http://localhost:3000'
+};
+
 app.use(express.json());
+app.use(cors(options));
 declare module 'express-session'{
     interface SessionData {
         _id: String | Object | null;
