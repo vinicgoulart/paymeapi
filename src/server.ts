@@ -13,7 +13,8 @@ dotenv.config();
 const app: Express = express();
 
 var options: cors.CorsOptions = {
-    origin: 'http://localhost:3000'
+    origin: 'http://localhost:3000',
+    credentials: true
 };
 
 app.use(express.json());
@@ -28,11 +29,10 @@ declare module 'express-session'{
 var oneHour = 60 * 60 * 1000;
 
 app.use(session({
-    secret: process.env.URI,
-    resave: false,
+    secret: process.env.SECRET,
+    resave: true,
     saveUninitialized: false,
-    cookie: { secure: false, httpOnly: true, maxAge: oneHour },
-    name: 'sessionId'
+    cookie: { httpOnly: true, maxAge: oneHour },
 }));
 
 app.use('/', authRouter);
